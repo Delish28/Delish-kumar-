@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("YOUR_PUBLIC_KEY"); // replace with your EmailJS Public Key
+    })();
+  </script>
+
+  <style>
+    /* General Styling */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background: #f4f4f4; line-height: 1.6; }
+
+    /* Navbar */
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: #333; color: white; }
+    .navbar .logo { font-size: 20px; font-weight: bold; }
+    .nav-links { list-style: none; display: flex; gap: 20px; }
+    .nav-links li a { color: white; text-decoration: none; }
+    .nav-links li a:hover { color: #ffd700; }
+    .menu-toggle { display: none; cursor: pointer; }
+
+    /* Sections */
+    section { padding: 50px 20px; text-align: center; }
+    h2 { margin-bottom: 20px; }
+
+    /* Hero */
+    .hero { background: #222; color: white; height: 80vh; display: flex; justify-content: center; align-items: center; }
+    .hero h1 { font-size: 40px; }
+    .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #ffd700; color: black; text-decoration: none; border-radius: 5px; }
+
+    /* About */
+    .about-content { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .about-content img { width: 200px; border-radius: 10px; }
+
+    /* Projects */
+    .project-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .project-card { background: white; padding: 20px; border-radius: 10px; width: 250px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+
+    /* Quiz App */
+    .quiz-container { background: white; padding: 20px; border-radius: 10px; width: 90%; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    .quiz-container ul { list-style: none; text-align: left; }
+    .quiz-container li { margin: 10px 0; }
+    .quiz-container button { margin-top: 10px; padding: 10px; background: #333; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .quiz-container button:hover { background: #555; }
+    .result { font-weight: bold; margin-top: 15px; }
+
+    /* Blog CMS */
+    .blog-form { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2); max-width: 600px; margin: auto; }
+    .blog-form input, .blog-form textarea, .blog-form button { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
+    .blog-form button { background: #333; color: white; cursor: pointer; }
+    .blog-form button:hover { background: #555; }
+
+    /* Contact */
+    #contact-form { max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 10px; }
+    #contact-form input, #contact-form textarea, #contact-form button { padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    #contact-form button { background: #333; color: white; cursor: pointer; }
+    #contact-form button:hover { background: #555; }
+
+    /* Footer */
+    footer { text-align: center; padding: 15px; background: #333; color: white; margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">MyPortfolio</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Hello, I'm <span>MR DELISH KUMAR V</span></h1>
+      <p>I am a Student</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <img src="IMG_20240820_184448.jpg" alt="Profile Photo">
+      <p>I am a student enthusiastic about technology and design. I love building interactive, user-friendly web applications and exploring new tools in the tech world.</p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card"><h3>Portfolio Website</h3><p>A responsive student portfolio website.</p></div>
+      <div class="project-card"><h3>Quiz App</h3><p>JavaScript-based quiz application.</p></div>
+      <div class="project-card"><h3>Blog CMS</h3><p>Personal blog with local storage CMS.</p></div>
+    </div>
+  </section>
+
+  <!-- Quiz Section -->
+  <section id="quiz">
+    <h2>Quiz App</h2>
+    <div class="quiz-container" id="quiz-box">
+      <h2 id="question">Question text</h2>
+      <ul>
+        <li><label><input type="radio" name="answer" class="answer" id="a"> <span id="a_text">Answer A</span></label></li>
+        <li><label><input type="radio" name="answer" class="answer" id="b"> <span id="b_text">Answer B</span></label></li>
+        <li><label><input type="radio" name="answer" class="answer" id="c"> <span id="c_text">Answer C</span></label></li>
+        <li><label><input type="radio" name="answer" class="answer" id="d"> <span id="d_text">Answer D</span></label></li>
+      </ul>
+      <button id="submit">Submit</button>
+      <div class="result" id="result"></div>
+    </div>
+  </section>
+
+  <!-- Blog CMS Section -->
+  <section id="blog">
+    <h2>My Blog</h2>
+    <form id="postForm" class="blog-form">
+      <input type="text" id="title" placeholder="Post Title" required>
+      <textarea id="content" rows="6" placeholder="Write your content here..." required></textarea>
+      <button type="submit">Save Post</button>
+    </form>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" id="name" name="user_name" placeholder="Your Name" required>
+      <input type="email" id="email" name="user_email" placeholder="Your Email" required>
+      <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <p id="form-status"></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MR DELISH KUMAR | All rights reserved</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    /* Quiz App Script */
+    const quizData = [
+      { question: "What does HTML stand for?", a: "Hyper Text Markup Language", b: "High Text Markup Language", c: "Hyperlinks and Text Markup Language", d: "Home Tool Markup Language", correct: "a" },
+      { question: "Which language is used for styling web pages?", a: "HTML", b: "JQuery", c: "CSS", d: "XML", correct: "c" },
+      { question: "Which is not a JavaScript Framework?", a: "React", b: "Angular", c: "Vue", d: "Django", correct: "d" },
+      { question: "Which is used for database?", a: "PHP", b: "MySQL", c: "HTML", d: "CSS", correct: "b" }
+    ];
+    const quizBox = document.getElementById("quiz-box");
+    const answerEls = document.querySelectorAll(".answer");
+    const questionEl = document.getElementById("question");
+    const a_text = document.getElementById("a_text");
+    const b_text = document.getElementById("b_text");
+    const c_text = document.getElementById("c_text");
+    const d_text = document.getElementById("d_text");
+    const submitBtn = document.getElementById("submit");
+    let currentQuiz = 0; let score = 0;
+    loadQuiz();
+    function loadQuiz() {
+      deselectAnswers();
+      const currentQuizData = quizData[currentQuiz];
+      questionEl.innerText = currentQuizData.question;
+      a_text.innerText = currentQuizData.a;
+      b_text.innerText = currentQuizData.b;
+      c_text.innerText = currentQuizData.c;
+      d_text.innerText = currentQuizData.d;
+    }
+    function getSelected() {
+      let answer = undefined;
+      answerEls.forEach((answerEl) => { if (answerEl.checked) { answer = answerEl.id; } });
+      return answer;
+    }
+    function deselectAnswers() { answerEls.forEach((answerEl) => { answerEl.checked = false; }); }
+    submitBtn.addEventListener("click", () => {
+      const answer = getSelected();
+      if (answer) {
+        if (answer === quizData[currentQuiz].correct) { score++; }
+        currentQuiz++;
+        if (currentQuiz < quizData.length) { loadQuiz(); }
+        else {
+          quizBox.innerHTML = `<h2 class="result">You answered correctly ${score}/${quizData.length} questions.</h2><button onclick="location.reload()">Restart</button>`;
+        }
+      }
+    });
+
+    /* Blog CMS Script */
+    const postForm = document.getElementById("postForm");
+    postForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+      const newPost = { title, content, date: new Date() };
+      let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+      posts.push(newPost);
+      localStorage.setItem("blogPosts", JSON.stringify(posts));
+      alert("Post saved!");
+      postForm.reset();
+    });
+  </script>
+</body>
+</html>
